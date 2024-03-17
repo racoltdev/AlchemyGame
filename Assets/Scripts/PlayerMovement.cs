@@ -4,6 +4,11 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     private Vector3 targetPosition;
+	private Vector3 lastPosition;
+    private float stuckTimer = 0f;
+    private float maxStuckTime = 1.5f; // Adjust as needed
+	private float resetDistance = 0.5f; // Adjust as needed
+
 
     private void Start()
     {
@@ -13,6 +18,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+		// Update the stuck timer if the player hasn't moved
+        if (transform.position == lastPosition)
+        {
+            stuckTimer += Time.deltaTime;
+        }
+        else
+        {
+            // Reset the stuck timer if the player has moved
+            stuckTimer = 0f;
+            lastPosition = transform.position;
+        }
+
+        // Check if the player has been stuck for too long
+        if (stuckTimer > maxStuckTime)
+        {
+            // Reset the target position slightly behind the current position
+            Vector3 direction = (lastPosition - transform.position).normalized;
+            targetPosition = lastPosition + direction * resetDistance;
+        }
+		
         if (Input.GetMouseButton(1)) // Right click
         {
             // Set target position to mouse position only when right-click event occurs
@@ -42,4 +67,5 @@ public class PlayerMovement : MonoBehaviour
             }
         
     }
+
 }
