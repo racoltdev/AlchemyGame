@@ -18,24 +18,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-		// Update the stuck timer if the player hasn't moved
-        if (transform.position == lastPosition)
-        {
-            stuckTimer += Time.deltaTime;
-        }
-        else
-        {
-            // Reset the stuck timer if the player has moved
-            stuckTimer = 0f;
-            lastPosition = transform.position;
-        }
-
-        // Check if the player has been stuck for too long
-        if (stuckTimer > maxStuckTime)
+		// Check if the player has been continuously colliding with a wall in the same small range of x or y coordinates
+        if (IsStuck())
         {
             // Reset the target position slightly behind the current position
-            Vector3 direction = (lastPosition - transform.position).normalized;
-            targetPosition = lastPosition + direction * resetDistance;
+            Vector3 direction = (targetPosition - transform.position).normalized;
+            targetPosition = transform.position + direction * resetDistance;
         }
 		
         if (Input.GetMouseButton(1)) // Right click
@@ -54,10 +42,8 @@ public class PlayerMovement : MonoBehaviour
         direction.y = 0f;
         direction.Normalize();
 
-
-        
-            // If not climbing, move towards the target position along the x-axis
-            transform.position += direction * moveSpeed * Time.deltaTime;
+        //Move
+        transform.position += direction * moveSpeed * Time.deltaTime;
 
             // Check if the square is within an acceptable range of X positions to snap to the target position
             if (Mathf.Abs(transform.position.x - targetPosition.x) < 0.1f)
@@ -66,6 +52,28 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = new Vector3(targetPosition.x, transform.position.y, transform.position.z);
             }
         
+    }
+private bool IsStuck()
+    {
+        // Cast a box to check for collision with walls
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, transform.localScale, 0f);
+        
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("Wall"))
+            {
+                // Increase the stuck timer if continuously colliding with a wall in the same small range of x or y coordinates
+                stuckTimer += Time.deltaTime;
+                if (stuckTimer > maxStuckTime)
+                {
+                    return true;
+                }
+            }
+        }
+        
+        // Reset the stuck timer if not colliding with any wall
+        stuckTimer = 0f;
+        return false;
     }
 
 }

@@ -2,19 +2,33 @@ using UnityEngine;
 
 public class ClickableItem : MonoBehaviour
 {
-    public string itemName;
-    private Inventory inventory;
+    // Highlight color
+    public Color highlightColor = Color.magenta;
+
+    // Original color
+    private Color originalColor;
+
+    // Reference to the SpriteRenderer component
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
-        inventory = Inventory.instance;
+        // Get the SpriteRenderer component
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Store the original color
+        originalColor = spriteRenderer.color;
     }
 
-    private void OnMouseDown()
-{
-    Debug.Log("Clicked on: " + itemName); // Check if the method is being called
-    inventory.AddItem(itemName, 1);
-    inventory.SetItemIcon(itemName);
-}
+    private void OnMouseEnter()
+    {
+        // Change the color to the highlight color when the mouse enters
+        spriteRenderer.color = highlightColor;
+    }
 
+    private void OnMouseExit()
+    {
+        // Restore the original color when the mouse exits
+        spriteRenderer.color = originalColor;
+    }
 }
