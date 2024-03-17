@@ -3,43 +3,27 @@ using UnityEngine;
 public class ClickManager : MonoBehaviour
 {
     public PlayerMovement playerMovement;
-    private bool playerInTrigger = false;
 
     public void ClickReaction(InteractData interact)
     {
         playerMovement.SetTargetPosition(interact.goToPoint.position);
-        GetItem(interact);
+        GetItem(interact); // Pass the interact argument here
     }
-    
+
     private void GetItem(InteractData interact)
     {
-        if (playerInTrigger)
+        // Check if player reached the goToPoint position
+        if (Vector2.Distance(playerMovement.transform.position, interact.goToPoint.position) < 1.5f)
         {
-            Debug.Log("Player is in trigger zone");
-            // Check the distance between player and goToPoint
-            if (Vector2.Distance(playerMovement.transform.position, interact.goToPoint.position) < 0.1f)
+            // Check if the itemID is 2
+            if (interact.itemID == 2)
             {
-                Debug.Log("Item collected: " + interact.itemID);
-                // Add logic to handle item collection based on interact.itemID
+                Debug.Log("Success!");
             }
             else
             {
-                Debug.Log("Failed to collect item: Player is not at goToPoint");
+                Debug.Log("Failure: Incorrect itemID!");
             }
         }
-        else
-        {
-            Debug.Log("Player is not in trigger zone");
-        }
-    }
-
-    public void PlayerEnteredTrigger()
-    {
-        playerInTrigger = true;
-    }
-
-    public void PlayerExitedTrigger()
-    {
-        playerInTrigger = false;
     }
 }

@@ -754,10 +754,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1091255401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f35d9cf4558429f409699f0a6af978b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 85e04c32a2da83a4492f00516b6a61b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 0
 --- !u!114 &1091255408 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3937690888828284139, guid: 0e3330a119c057944b42adc6d54357da, type: 3}
@@ -1343,7 +1343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goToPoint: {fileID: 2026315657}
-  itemID: 1
+  itemID: 2
 --- !u!1001 &3937690888240116045
 PrefabInstance:
   m_ObjectHideFlags: 0
