@@ -16,27 +16,19 @@ public class Inventory : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void AddItem(string itemName, int quantity)
+    public void AddItem(string itemName, Sprite sprite)
     {
-        if (items.ContainsKey(itemName))
-            items[itemName] += quantity;
-        else
-            items[itemName] = quantity;
+        Debug.Log("itemName = "+ itemName + "itemSprite = " + sprite);
     }
 
-    public void RemoveItem(string itemName, int quantity)
+    public void RemoveItem(string itemName, Sprite sprite)
     {
-        if (items.ContainsKey(itemName))
-        {
-            items[itemName] -= quantity;
-            if (items[itemName] <= 0)
-                items.Remove(itemName);
-        }
+        
     }
 
-    public bool HasItem(string itemName, int quantity)
+    public bool HasItem(string itemName, Sprite sprite)
     {
-        return items.ContainsKey(itemName) && items[itemName] >= quantity;
+        return items.ContainsKey(itemName);
     }
 
     public void SetItemIcon(string itemName)

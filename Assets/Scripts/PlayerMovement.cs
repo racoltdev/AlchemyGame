@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
         // Initialize target position to current position to prevent the square from moving to the middle of the screen on game start
         targetPosition = transform.position;
     }
+	
+	public void SetTargetPosition(Vector3 position)
+    {
+        targetPosition = position;
+    }
 
     private void Update()
     {
@@ -36,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         MoveTowards(targetPosition);
     }
 
-    private void MoveTowards(Vector3 targetPosition)
+    public void MoveTowards(Vector3 targetPosition)
     {
         Vector3 direction = (targetPosition - transform.position);
         direction.y = 0f;
