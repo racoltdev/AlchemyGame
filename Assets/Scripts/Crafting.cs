@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class Crafting : MonoBehaviour
 {
-    private string[] items = new string[2];
-    private Dictionary<string, List<string>> combinations = new Dictionary<string, List<string>>();
+    private int[] items = new int[2];
+    private Dictionary<int, List<int>> combinations = new Dictionary<int, List<int>>();
 
-    public void AddItem(string itemName)
+    public void AddItem(int itemID)
     {
         for (int i = 0; i < items.Length; i++)
         {
-            if (string.IsNullOrEmpty(items[i]))
+            if (items[i] == 0)
             {
-                items[i] = itemName;
+                items[i] = itemID;
             }
         }
     }
 
-    public void RemoveItem(string itemName)
+    public void RemoveItem(int itemID)
     {
         for (int i = 0; i < items.Length; i++)
         {
-            if (string.Equals(items[i], itemName))
+            if (items[i] == itemID)
             {
-                items[i] = "";
+                items[i] = 0;
                 break;
             }
         }
@@ -33,16 +33,19 @@ public class Crafting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        List<List<string>> elems = new List<List<string>>();
-        elems.Add(new List<string> { "Air", "Earth" });
-        elems.Add(new List<string> { "Earth", "Water" });
+        items[0] = 0;
+        items[1] = 0;
 
-        foreach (List<string> e in elems) {
+        List<List<int>> elems = new List<List<int>>();
+        elems.Add(new List<int> { 4, 3 });
+        elems.Add(new List<int> { 1, 3 });
+
+        foreach (List<int> e in elems) {
             e.Sort();
         }
 
-        combinations.Add("Levitation", elems[0]);
-        combinations.Add("Adhesive", elems[1]);
+        combinations.Add(9, elems[0]);
+        combinations.Add(6, elems[1]);
     }
 
     // Update is called once per frame
@@ -51,12 +54,12 @@ public class Crafting : MonoBehaviour
 
     }
 
-    public string Craft() {
+    public int Craft() {
         bool bothItems = true;
-        string craftedItem = "";
+        int craftedItem = 0;
         for (int i = 0; i < items.Length; i++)
         {
-            if (string.IsNullOrEmpty(items[i]))
+            if (items[i] == 0)
             {
                 bothItems = false;
                 break;
@@ -65,19 +68,19 @@ public class Crafting : MonoBehaviour
         if (bothItems)
         {
             System.Array.Sort(items);
-            getResult();
+            craftedItem = getResult();
         }
         return craftedItem;
     }
 
-    private string getResult() 
+    private int getResult() 
     {
-        foreach (KeyValuePair<string, List<string>> combo in combinations)
+        foreach (KeyValuePair<int, List<int>> combo in combinations)
         {
             bool isSame = false;
             for (int i = 0; i < items.Length; i++)
             {
-                if (!string.Equals(combo.Value[i], items[i]))
+                if (combo.Value[i] != items[i])
                 {
                     isSame = false;
                 }
@@ -87,6 +90,6 @@ public class Crafting : MonoBehaviour
                 return combo.Key;
             }
         }
-        return "";
+        return 0;
     }
 }
