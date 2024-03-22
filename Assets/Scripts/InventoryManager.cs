@@ -34,7 +34,7 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-    public void AddItem(int itemID, string itemName, int quantity, Sprite itemSprite)
+    /*public void AddItem(int itemID, string itemName, int quantity, Sprite itemSprite)
     {
         for (int i = 0; i < itemSlot.Length; i++)
         {
@@ -45,5 +45,5 @@ public class InventoryManager : MonoBehaviour
             }
         }
         Debug.Log("itemID = " + itemID + "itemName = " + itemName + "quantity = " + quantity + "itemSprite = " + itemSprite);
-    }
+    }*/
 }

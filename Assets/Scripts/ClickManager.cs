@@ -13,7 +13,7 @@ public class ClickManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -33,28 +33,32 @@ public class ClickManager : MonoBehaviour
         }
     }
 
-
+   
     private void GetItem(Item item)
     {
-        if (IsValidCraftingItem(item.itemID))
+        /*if (IsValidCraftingItem(item.itemID))
         {
 
-            inventoryManager.AddItem(item.itemName, item.quantity, item.sprite);
+            inventoryManager.AddItem(item.itemID, item.itemName, item.quantity, item.sprite);
             Debug.Log("Success! " + item.itemName + "added to inventory.");
         }
         else
         {
             Debug.Log("Failure: Incorrect itemID!");
         }
-        Destroy(item.gameObject);
+        Destroy(item.gameObject);*/
     }
 
-    private bool IsValidCraftingItem(int itemID)
-    {
-        //add crafting code
+
+    // add crafting code-------------------------------------------------------------
+    //private bool IsValidCraftingItem(int itemID)
+    //{
+   // add crafting code*/
         
-    }
-       
+   // }
+
+
+  //IGNORE BELOW BUT DONT DELETE-----------------------------------------------------     
         
         /*(InteractData interact)
     {
@@ -71,5 +75,5 @@ public class ClickManager : MonoBehaviour
                 Debug.Log("Failure: Incorrect itemID!");
             }
         }*/
-    }
+    //}
 }
