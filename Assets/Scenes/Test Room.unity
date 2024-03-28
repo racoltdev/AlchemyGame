@@ -537,8 +537,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f88189a87b4ff44b18d1a57bb0dfdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 2
-  itemName: Fire
+  itemID: 3
+  itemName: Earth
   quantity: 1
   sprite: {fileID: 21300000, guid: 0c1a4601f1023df4e8c8ef47ca430232, type: 3}
 --- !u!50 &247382866

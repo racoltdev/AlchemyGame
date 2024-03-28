@@ -15,6 +15,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public Sprite sprite;
     public bool isFull;
 
+    [SerializeField]
+    private int maxNumberOfItems;
+
     //------ITEM SLOT------//
 
     [SerializeField]
@@ -33,21 +36,48 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }  
 
-    public void AddItem(int itemID, string itemName, int quantity, Sprite sprite)
+    public int AddItem(int itemID, string itemName, int quantity, Sprite sprite)
     {
+        // Check if slot is full
+
+        if (isFull)
+            return quantity;
+
         this.itemID = itemID;
         this.itemName = itemName;
-        this.quantity = quantity;
-        this.sprite = sprite;
-        isFull = true;
 
-        quantityText.text = quantity.ToString();
-        quantityText.enabled = true;
+        this.sprite = sprite;
         itemImage.sprite = sprite;
+
+        this.quantity += quantity;
+        if (this.quantity >= maxNumberOfItems)
+        {
+            quantityText.text = maxNumberOfItems.ToString();
+            quantityText.enabled = true;
+            isFull = true;
+
+            // Return Leftovers
+
+            int extraItems = this.quantity - maxNumberOfItems;
+            this.quantity = maxNumberOfItems;
+            return extraItems;
+        }
+
+        // update quantity text
+
+        quantityText.text = this.quantity.ToString();
+        quantityText.enabled = true;
+
+        return 0;
+
+
+
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+
         if(eventData.button == PointerEventData.InputButton.Left)
         {
             OnLeftClick();
