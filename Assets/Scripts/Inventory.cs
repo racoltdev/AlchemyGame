@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory
+/*public class Inventory
 {
     private List<Item> itemList;
 
@@ -26,7 +26,7 @@ public class Inventory
         return itemList;
     }
 }
-    /*public static Inventory instance;
+    public static Inventory instance;
     private Dictionary<string, int> items = new Dictionary<string, int>();
     public Image[] inventorySlots; // Array of inventory slot images
 
