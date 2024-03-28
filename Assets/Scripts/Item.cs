@@ -2,32 +2,66 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item
 {
+    public enum ItemType
+    {
+        Fire,
+        Water,
+        Earth,
+        Air,
+    }
 
+    public ItemType itemType;
+    public int amount;
+}
+    /*[SerializeField]
     public int itemID;
+
+    [SerializeField]
     public string itemName;
+
+    [SerializeField]
     public int quantity;
+
+    [SerializeField]
     public Sprite sprite;
 
+    private InventoryManager inventoryManager;
 
-    /*private InventoryManager inventoryManager;
-
-
-     Start is called before the first frame update
+    // Start is called before the first frame update
     void Start()
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
-    }*/
+    }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.tag == "Player")
         {
-            InventoryManager inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
             inventoryManager.AddItem(itemID, itemName, quantity, sprite);
             Destroy(gameObject);
         }
-    }*/
-
+    }
 }
+
+
+
+
+Start is called before the first frame update
+void Start()
+{
+    inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+}
+
+private void OnCollisionEnter2D(Collision2D collision)
+{
+    if(collision.gameObject.CompareTag("Player"))
+    {
+        //InventoryManager inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+        inventoryManager.AddItem(itemID, itemName, quantity, sprite);
+        Destroy(gameObject);
+    }
+}
+
+}*/

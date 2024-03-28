@@ -2,9 +2,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+public class Inventory
 {
-    public static Inventory instance;
+    private List<Item> itemList;
+
+    public Inventory()
+    {
+        itemList = new List<Item>();
+
+        AddItem(new Item { itemType = Item.ItemType.Fire, amount = 1 });
+        AddItem(new Item { itemType = Item.ItemType.Water, amount = 1 });
+        AddItem(new Item { itemType = Item.ItemType.Earth, amount = 1 });
+        Debug.Log(itemList.Count);
+    }
+
+    public void AddItem(Item item)
+    {
+        itemList.Add(item);
+    }
+
+    public List<Item> GetItemList()
+    {
+        return itemList;
+    }
+}
+    /*public static Inventory instance;
     private Dictionary<string, int> items = new Dictionary<string, int>();
     public Image[] inventorySlots; // Array of inventory slot images
 
@@ -45,5 +67,4 @@ public class Inventory : MonoBehaviour
                 break;
             }
         }
-    }
-}
+    }*/

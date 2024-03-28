@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     public float moveSpeed = 5f;
     private Vector3 targetPosition;
 	private Vector3 lastPosition;
     private float stuckTimer = 0f;
     private float maxStuckTime = 1.5f; // Adjust as needed
 	private float resetDistance = 0.5f; // Adjust as needed
+
 
 
     private void Start()
@@ -20,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     {
         targetPosition = position;
     }
+
+    
 
     private void Update()
     {
