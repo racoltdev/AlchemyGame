@@ -14,7 +14,7 @@ public class MOVEMENT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(1)||Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
             m_Animator.SetTrigger("walktrig");
         }

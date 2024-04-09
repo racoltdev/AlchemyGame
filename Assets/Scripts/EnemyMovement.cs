@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float moveSpeed = 1f;
+    public float moveSpeed = 5f;
     private Vector3 targetPosition;
 
     private void Start()

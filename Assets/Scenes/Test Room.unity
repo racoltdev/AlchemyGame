@@ -2696,10 +2696,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 477167621491494871, guid: fbd6a225d9eded742898fa38561c6e4f, type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 5336362935109169367, guid: fbd6a225d9eded742898fa38561c6e4f, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -4689,7 +4685,6 @@ MonoBehaviour:
   - {fileID: 1211330198}
   - {fileID: 2071507152}
   - {fileID: 1226597030}
-  selectedItems: 0
 --- !u!114 &1696688060
 MonoBehaviour:
   m_ObjectHideFlags: 0

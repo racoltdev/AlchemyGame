@@ -16,8 +16,8 @@ public class MoveCheck : MonoBehaviour
 
     void Update()
     {
-        // Check for mouse button click
-        if (Input.GetMouseButtonDown(1)||Input.GetMouseButton(0))
+        // Check for right mouse button click
+        if (Input.GetMouseButtonDown(1))
         {
             // Get mouse position in world coordinates
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

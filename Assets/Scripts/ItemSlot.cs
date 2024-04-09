@@ -92,7 +92,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnLeftClick()
     {
-        inventoryManager.SelectItem(this);
+        inventoryManager.DeselectAllSlots();
+        selectedShader.SetActive(true);
+        thisItemSelected = true;
     }
 
     public void OnRightClick()

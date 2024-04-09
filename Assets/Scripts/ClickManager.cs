@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class ClickManager : MonoBehaviour
 {
@@ -24,6 +24,26 @@ public class ClickManager : MonoBehaviour
             {
                 Debug.Log("Failure: Incorrect itemID!");
             }
+        }
+    }
+}*/
+
+using UnityEngine;
+
+public class ClickManager : MonoBehaviour
+{
+    public PlayerMovement playerMovement;
+
+    public void ClickReaction(Item item)
+    {
+        // Example logic based on item properties
+        if (item.itemID == 2)
+        {
+            Debug.Log("Success!");
+        }
+        else
+        {
+            Debug.Log("Failure: Incorrect itemID!");
         }
     }
 }
