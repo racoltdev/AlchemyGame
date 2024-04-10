@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
+
 {
-    [SerializeField]
-    private int itemID;
-
-    [SerializeField]
-    private string itemName;
-
-    [SerializeField]
-    private int quantity;
-
-    [SerializeField]
-    private Sprite sprite;
+    public int itemID;
+    public string itemName;
+    public int quantity;
+    public Sprite sprite;
+    //public Transform goToPoint;
 
     private InventoryManager inventoryManager;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +20,16 @@ public class Item : MonoBehaviour
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnItemClicked()
+    {
+        ClickManager clickManager = FindObjectOfType<ClickManager>();
+        if (clickManager != null)
+        {
+            clickManager.ClickReaction(this.GetComponent<Item>());
+        }
+    }
+
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -34,6 +39,6 @@ public class Item : MonoBehaviour
             else
                 quantity = leftOverItems;
         }
-    }
+    }*/
 
 }
