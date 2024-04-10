@@ -9,7 +9,7 @@ public class Item : MonoBehaviour
     public string itemName;
     public int quantity;
     public Sprite sprite;
-    //public Transform goToPoint;
+    public Transform goToPoint;
 
     private InventoryManager inventoryManager;
     
@@ -17,17 +17,25 @@ public class Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+        //inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
 
-    void OnItemClicked()
+    public void OnItemClicked()
     {
-        ClickManager clickManager = FindObjectOfType<ClickManager>();
-        if (clickManager != null)
-        {
-            clickManager.ClickReaction(this.GetComponent<Item>());
-        }
+        Debug.Log("Mouse clicked on item");
+        CollectItem();
     }
+
+    public void CollectItem()
+    {
+        InventoryManager inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+        int leftOverItems = inventoryManager.AddItem(itemID, itemName, quantity, sprite);
+        if (leftOverItems <= 0)
+            Destroy(gameObject);
+        else
+            quantity = leftOverItems;
+    }
+
 
     /*private void OnCollisionEnter2D(Collision2D collision)
     {
