@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
             targetPosition = transform.position + direction * resetDistance;
         }
 		
-        if (Input.GetMouseButton(1)) // Right click
+        if (Input.GetMouseButton(0)||Input.GetMouseButton(1)) // Left or Right Click
         {
             // Set target position to mouse position only when right-click event occurs
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

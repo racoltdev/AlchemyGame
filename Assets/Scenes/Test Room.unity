@@ -540,7 +540,6 @@ MonoBehaviour:
   itemName: Earth
   quantity: 1
   sprite: {fileID: 21300000, guid: 0c1a4601f1023df4e8c8ef47ca430232, type: 3}
-  goToPoint: {fileID: 0}
 --- !u!61 &247382867
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1517,7 +1516,6 @@ MonoBehaviour:
   itemName: Fire
   quantity: 1
   sprite: {fileID: 21300000, guid: ba1683c7e3cf1494ba97b62e6db7cf06, type: 3}
-  goToPoint: {fileID: 0}
 --- !u!61 &637920961
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1681,7 +1679,6 @@ MonoBehaviour:
   itemName: Fire
   quantity: 1
   sprite: {fileID: 21300000, guid: ba1683c7e3cf1494ba97b62e6db7cf06, type: 3}
-  goToPoint: {fileID: 0}
 --- !u!50 &705625559
 Rigidbody2D:
   serializedVersion: 4
@@ -2685,6 +2682,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 477167621491494871, guid: fbd6a225d9eded742898fa38561c6e4f, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5336362935109169367, guid: fbd6a225d9eded742898fa38561c6e4f, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -6077,8 +6078,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goToPoint: {fileID: 2026315657}
   itemID: 2
-  itemName: 
-  sprite: {fileID: 0}
 --- !u!1001 &232593707644961154
 PrefabInstance:
   m_ObjectHideFlags: 0
