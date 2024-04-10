@@ -6,7 +6,6 @@ public class InventoryManager : MonoBehaviour
 { 
 
     public GameObject InventoryMenu;
-    private bool menuActivated;
     public ItemSlot[] itemSlot;
 
     // Start is called before the first frame update
@@ -19,8 +18,8 @@ public class InventoryManager : MonoBehaviour
     void Update()
     {
             InventoryMenu.SetActive(true);
-            menuActivated = true;
-        }
+          
+    }
    
     public int AddItem(int itemID, string itemName, int quantity, Sprite sprite)
     {
