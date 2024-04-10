@@ -4,7 +4,7 @@ public class ClickManager : MonoBehaviour
 {
     public PlayerMovement playerMovement;
 
-    public void ClickReaction(Item item)
+    public void ClickReaction(Item item, PlayerMovement playerMovement)
     {
         Debug.Log("ClickReaction called");
 
