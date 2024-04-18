@@ -9,10 +9,12 @@ public class InventoryManager : MonoBehaviour
     public ItemSlot[] itemSlot;
     public int selectedItems;
 
+    private Crafting crafter;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        crafter = GameObject.Find("InventoryCanvas").GetComponent<Crafting>();
     }
 
     // Update is called once per frame
@@ -39,19 +41,35 @@ public class InventoryManager : MonoBehaviour
         //Debug.Log("itemID = " + itemID + "itemName = " + itemName + "quantity = " + quantity + "itemSprite = " + sprite);
     }
 
+    public void RemoveItem(int slotID)
+    {
+        int itemID = itemSlot[slotID].itemID;
+        itemSlot[slotID].RemoveItem();
+    }
+
     public void SelectItem(ItemSlot item)
     {
+        int itemID = item.itemID;   
         if (item.thisItemSelected)
         {
             selectedItems--;
             item.selectedShader.SetActive(false);
             item.thisItemSelected = false;
+            crafter.RemoveItem(itemID);
+
         }
         else if (selectedItems < 2)
         {
             selectedItems += 1;
             item.selectedShader.SetActive(true);
             item.thisItemSelected = true;
+            crafter.AddItem(itemID);
+            if (selectedItems == 2)
+            {
+                // This is where logic for enabling "Craft" button would go and replacing inventory items
+                int craftedItemID = crafter.CraftResult();
+                Debug.Log("Crafted item: " + craftedItemID);
+            }
         }
     }
 

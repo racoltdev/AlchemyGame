@@ -5,6 +5,7 @@ using UnityEngine;
 public class Crafting : MonoBehaviour
 {
     private int[] items = new int[2];
+    private int[] slots = new int[2];
     private Dictionary<int, List<int>> combinations = new Dictionary<int, List<int>>();
 
     public void AddItem(int itemID)
@@ -54,7 +55,7 @@ public class Crafting : MonoBehaviour
 
     }
 
-    public int Craft() {
+    public int CraftResult() {
         bool bothItems = true;
         int craftedItem = 0;
         for (int i = 0; i < items.Length; i++)
@@ -68,12 +69,12 @@ public class Crafting : MonoBehaviour
         if (bothItems)
         {
             System.Array.Sort(items);
-            craftedItem = getResult();
+            craftedItem = Recipe();
         }
         return craftedItem;
     }
 
-    private int getResult() 
+    private int Recipe() 
     {
         foreach (KeyValuePair<int, List<int>> combo in combinations)
         {

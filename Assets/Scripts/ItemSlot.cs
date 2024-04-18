@@ -69,10 +69,21 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         quantityText.enabled = true;
 
         return 0;
+    }
 
+    public void RemoveItem()
+    {
+        if (this.quantity > 0)
+        {
+            this.itemID = 0;
+            this.itemName = null;
+            this.sprite = null;
+            itemImage.sprite = null;
+            this.quantity = 0;
 
-
-
+            quantityText.enabled = false;
+            isFull = false;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
