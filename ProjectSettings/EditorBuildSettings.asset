@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Test Room.unity
     guid: 4f7692278f43d6540bf8025dce3a4aae
   - enabled: 1
-    path: Assets/Scenes/Water Level.unity
+    path: Assets/Scenes/Seed Level 2.unity
     guid: bf3a7760f5046f7479cb046dd16a92e7
   m_configObjects: {}
