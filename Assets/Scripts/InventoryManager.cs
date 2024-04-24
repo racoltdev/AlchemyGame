@@ -49,7 +49,7 @@ public class InventoryManager : MonoBehaviour
 
     public void SelectItem(ItemSlot item)
     {
-        int itemID = item.itemID;   
+        int itemID = item.itemID;
         if (item.thisItemSelected)
         {
             selectedItems--;
@@ -58,7 +58,7 @@ public class InventoryManager : MonoBehaviour
             crafter.RemoveItem(itemID);
 
         }
-        else if (selectedItems < 2)
+        else if (selectedItems < 2 && itemID != 0)
         {
             selectedItems += 1;
             item.selectedShader.SetActive(true);
@@ -67,16 +67,32 @@ public class InventoryManager : MonoBehaviour
             if (selectedItems == 2)
             {
                 // This is where logic for enabling "Craft" button would go 
-                
+
             }
         }
     }
 
     public void Craft()
     {
-        // Replace inventory items with crafted item
+        if (selectedItems != 2) { return; }
         int craftedItemID = crafter.CraftResult();
+        if (craftedItemID == 0) { return; }
         Debug.Log("Crafted item: " + craftedItemID);
+
+        // Replace inventory items with crafted item
+        // I should just track what items are selected, but I don't want to
+        int craftedItemSlot = -1;
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            ItemSlot item = itemSlot[i];
+            if (item.thisItemSelected)
+            {
+                if (craftedItemSlot == -1) { craftedItemSlot = i; }
+                SelectItem(item);
+                RemoveItem(i);
+            }
+        }
+        int d = AddItem(craftedItemID, "filler", 1, null);
     }
 
 
