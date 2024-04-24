@@ -66,12 +66,19 @@ public class InventoryManager : MonoBehaviour
             crafter.AddItem(itemID);
             if (selectedItems == 2)
             {
-                // This is where logic for enabling "Craft" button would go and replacing inventory items
-                int craftedItemID = crafter.CraftResult();
-                Debug.Log("Crafted item: " + craftedItemID);
+                // This is where logic for enabling "Craft" button would go 
+                
             }
         }
     }
+
+    public void Craft()
+    {
+        // Replace inventory items with crafted item
+        int craftedItemID = crafter.CraftResult();
+        Debug.Log("Crafted item: " + craftedItemID);
+    }
+
 
     public void DeselectAllSlots()
     {
