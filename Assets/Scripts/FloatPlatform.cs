@@ -6,7 +6,12 @@ public class FloatPlatform : MonoBehaviour
 {
     public float moveSpeed = 1f;
     private Vector3 targetPosition;
-    public Vector3 positionAfterFloat; 
+    public Vector3 positionAfterFloat;
+
+    private int waterItemCount = 0;
+
+    public GameObject goalObject;
+    private bool isGoalFloating = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +26,11 @@ public class FloatPlatform : MonoBehaviour
     void Update()
     {
         MoveTowards(targetPosition);
+
+        if (isGoalFloating)
+        {
+            goalObject.transform.position += targetPosition - transform.position;
+        }
     }
 
     void WaterPlaced()
@@ -42,6 +52,41 @@ public class FloatPlatform : MonoBehaviour
         {
             // Snap to the target position
             transform.position = new Vector3(targetPosition.x, transform.position.y, transform.position.z);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            waterItemCount++;
+
+            if (waterItemCount == 1)
+            {
+                targetPosition.y += 1.0f;
+            }
+            else if (waterItemCount == 3)
+            {
+                targetPosition.y += 2.0f;
+
+                if (goalObject != null)
+                {
+                    isGoalFloating = true;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit (Collider other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            if (waterItemCount == 0)
+            {
+                targetPosition.y = positionAfterFloat.y;
+
+                isGoalFloating = false;
+            }
         }
     }
 }
