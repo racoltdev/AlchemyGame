@@ -5,6 +5,11 @@ using UnityEngine;
 public class FloatPlatform : MonoBehaviour
 {
     public float moveSpeed = 1f;
+    public float floodAndCeilingHeight = 3f; //height where room floods and binds to platform 2
+    public GameObject ceilingObject;
+    private bool isCeilingBound = false;
+    private bool roomFlooded = false;
+
     private Vector3 targetPosition;
     public Vector3 positionAfterFloat;
 
@@ -19,7 +24,7 @@ public class FloatPlatform : MonoBehaviour
         targetPosition = transform.position;
         var floatHeightObject = GameObject.Find("Water 1 Height");
         positionAfterFloat = floatHeightObject.transform.position;
-        WaterPlaced();
+        ceilingObject = GameObject.Find("Ceiling");
     }
 
     // Update is called once per frame
@@ -31,12 +36,24 @@ public class FloatPlatform : MonoBehaviour
         {
             goalObject.transform.position += targetPosition - transform.position;
         }
+
+        //check if room is flooded
+        if (!roomFlooded && waterItemCount >= 2 && transform.position.y < floodAndCeilingHeight)
+        {
+            FloodRoom();
+        }
+
+        //check is platform 2 is stuck to ceiling
+        if (!isCeilingBound && gameObject.name == "Floating Platform 2" && transform.position.y >= floodAndCeilingHeight)
+        {
+            BindToCeiling();
+        }
     }
 
-    void WaterPlaced()
+    /*void WaterPlaced()
     {
         targetPosition = positionAfterFloat;
-    }
+    }*/
 
     public void MoveTowards(Vector3 targetPosition)
     {
@@ -52,6 +69,23 @@ public class FloatPlatform : MonoBehaviour
         {
             // Snap to the target position
             transform.position = new Vector3(targetPosition.x, transform.position.y, transform.position.z);
+        }
+
+    }
+
+    public void FloodRoom()
+    {
+        targetPosition.y = floodAndCeilingHeight;
+        roomFlooded = true;
+    }
+
+    public void BindToCeiling()
+    {
+        if (ceilingObject != null && waterItemCount >= 1)
+        {
+            targetPosition.y = ceilingObject.transform.position.y;
+            roomFlooded = false;
+            isCeilingBound = true;
         }
     }
 
