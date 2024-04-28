@@ -55,11 +55,15 @@ public class InventoryManager : MonoBehaviour
     {
         string path = "Icons/" + itemName + " Sprite";
         Debug.Log("Crafted item icon: " + path);
-        Sprite sprite = Resources.Load<Sprite>(path);
-        //Texture2D tex = Resources.Load<Texture2D>(path);
-        //Rect rec = new Rect(0, 0, tex.width, tex.height);
-        //Sprite sprite = Sprite.Create(tex, rec, new Vector2(0, 0), 1);
-        
+        //Sprite sprite = Resources.Load(path) as Sprite;
+        Texture2D tex = Resources.Load(path) as Texture2D;
+        if (tex == null)
+        {
+            Debug.Log("Generated texture is null!");
+        }
+        Rect rec = new Rect(0, 0, tex.width, tex.height);
+        Sprite sprite = Sprite.Create(tex, rec, new Vector2(0, 0), 1);
+
         return sprite;
     }
 
