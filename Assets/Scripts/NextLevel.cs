@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ReturnHome : MonoBehaviour
+public class NextLevel : MonoBehaviour
 {
-    public void NextLevel ()
+    public void NextLvl ()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
