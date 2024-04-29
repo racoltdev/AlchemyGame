@@ -3652,6 +3652,10 @@ PrefabInstance:
       propertyPath: tutor2
       value: 
       objectReference: {fileID: 1861318176}
+    - target: {fileID: 479938877494007937, guid: 7dd95a78d15c840489da12b3cf23988c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 479938877494007938, guid: 7dd95a78d15c840489da12b3cf23988c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

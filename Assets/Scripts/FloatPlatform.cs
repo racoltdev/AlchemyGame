@@ -139,6 +139,7 @@ public class FloatPlatform : MonoBehaviour
     {
         if (invManager.itemSlot[i].itemID == correctItemID)
         {
+			invManager.RemoveItem(i);
             itemMatched = true;
             break;
         }
