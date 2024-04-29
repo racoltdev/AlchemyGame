@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4682474367410488832, guid: dce0f3cc358aa4f4599c8cf776cd194a, type: 3}
+      propertyPath: m_Delegates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4682474367410488833, guid: dce0f3cc358aa4f4599c8cf776cd194a, type: 3}
       propertyPath: m_RootOrder
       value: 0
