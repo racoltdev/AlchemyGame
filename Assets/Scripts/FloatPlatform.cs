@@ -50,12 +50,10 @@ public class FloatPlatform : MonoBehaviour
         }
     }
 
-
-	//Don't comment this out, this is the most important one!
-    public void WaterPlaced()
+    /*void WaterPlaced()
     {
         targetPosition = positionAfterFloat;
-    }
+    }*/
 
     public void MoveTowards(Vector3 targetPosition)
     {
