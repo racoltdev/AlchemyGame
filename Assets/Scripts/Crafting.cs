@@ -14,7 +14,9 @@ public class Crafting : MonoBehaviour
         {
             if (items[i] == 0)
             {
+                Debug.Log("Added " + itemID + " to crafting selection");
                 items[i] = itemID;
+                break;
             }
         }
     }
@@ -25,6 +27,7 @@ public class Crafting : MonoBehaviour
         {
             if (items[i] == itemID)
             {
+                Debug.Log("Removed " + itemID + " from crafting selection");
                 items[i] = 0;
                 break;
             }
@@ -37,16 +40,23 @@ public class Crafting : MonoBehaviour
         items[0] = 0;
         items[1] = 0;
 
-        List<List<int>> elems = new List<List<int>>();
-        elems.Add(new List<int> { 4, 3 });
-        elems.Add(new List<int> { 1, 3 });
+        //Ingredients must be listed in ascending order
+        List<int> ingredients;
+        // Levitation = Earth + Air
+        ingredients = new List<int> { 3, 4 };
+        combinations.Add(9, ingredients);
 
-        foreach (List<int> e in elems) {
-            e.Sort();
-        }
+        // Adhesive = Water + Earth
+        ingredients = new List<int> { 1, 3 };
+        combinations.Add(6, ingredients);
 
-        combinations.Add(9, elems[0]);
-        combinations.Add(6, elems[1]);
+        // Combustion = Fire + Air
+        ingredients = new List<int> { 2, 4 };
+        combinations.Add(7, ingredients);
+
+        //Sealant = Adhesive + Earth
+        ingredients = new List<int> { 3, 6 };
+        combinations.Add(8, ingredients);
     }
 
     // Update is called once per frame
@@ -56,12 +66,14 @@ public class Crafting : MonoBehaviour
     }
 
     public int CraftResult() {
+        Debug.Log("Crafting selection: " + items[0] + ", " + items[1]);
         bool bothItems = true;
         int craftedItem = 0;
         for (int i = 0; i < items.Length; i++)
         {
             if (items[i] == 0)
             {
+                Debug.Log("Craft failed");
                 bothItems = false;
                 break;
             }
@@ -69,6 +81,7 @@ public class Crafting : MonoBehaviour
         if (bothItems)
         {
             System.Array.Sort(items);
+            Debug.Log("Attempted craft: " + items[0] + ", " + items[1]);
             craftedItem = Recipe();
         }
         return craftedItem;
@@ -78,9 +91,10 @@ public class Crafting : MonoBehaviour
     {
         foreach (KeyValuePair<int, List<int>> combo in combinations)
         {
-            bool isSame = false;
+            bool isSame = true;
             for (int i = 0; i < items.Length; i++)
             {
+                
                 if (combo.Value[i] != items[i])
                 {
                     isSame = false;
@@ -88,9 +102,11 @@ public class Crafting : MonoBehaviour
             }
             if (isSame)
             {
+                Debug.Log("Matched recipe!");
                 return combo.Key;
             }
         }
+        Debug.Log("No recipe matched!");
         return 0;
     }
 }

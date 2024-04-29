@@ -23,7 +23,50 @@ public class InventoryManager : MonoBehaviour
             InventoryMenu.SetActive(true);
           
     }
-   
+
+    public string getNameFromID(int itemID)
+    {
+        switch (itemID)
+        {
+            case 1:
+                return "Water";
+            case 2:
+                return "Fire";
+            case 3:
+                return "Earth";
+            case 4:
+                return "Air";
+            case 5:
+                return "Metal";
+            case 6:
+                return "Adhesive";
+            case 7:
+                return "Combustion";
+            case 8:
+                return "Sealant";
+            case 9:
+                return "Levitation";
+            default:
+                return "";
+        }
+    }
+
+    public Sprite getItemSprite(int itemID, string itemName)
+    {
+        string path = "Icons/" + itemName + " Sprite";
+        Debug.Log("Crafted item icon: " + path);
+        //Sprite sprite = Resources.Load(path) as Sprite;
+        Texture2D tex = Resources.Load(path) as Texture2D;
+        if (tex == null)
+        {
+            Debug.Log("Generated texture is null!");
+        }
+        Rect rec = new Rect(0, 0, tex.width, tex.height);
+        Sprite sprite = Sprite.Create(tex, rec, new Vector2(0, 0), 1);
+
+        return sprite;
+    }
+
     public int AddItem(int itemID, string itemName, int quantity, Sprite sprite)
     {
         for (int i = 0; i< itemSlot.Length; i++)
@@ -92,7 +135,18 @@ public class InventoryManager : MonoBehaviour
                 RemoveItem(i);
             }
         }
-        int d = AddItem(craftedItemID, "filler", 1, null);
+        string craftedItemName = getNameFromID(craftedItemID);
+        if (craftedItemName.Equals(""))
+        {
+            Debug.Log("Invalid item crafted");
+            return;
+        }
+        Sprite sprite = getItemSprite(craftedItemID, craftedItemName);
+        if (sprite == null)
+        {
+            Debug.Log("Null sprite generated");
+        }
+        int d = AddItem(craftedItemID, craftedItemName, 1, sprite);
     }
 
 
