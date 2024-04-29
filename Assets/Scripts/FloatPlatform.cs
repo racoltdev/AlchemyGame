@@ -18,12 +18,35 @@ public class FloatPlatform : MonoBehaviour
     public GameObject goalObject;
     private bool isGoalFloating = false;
 	
+	 // Declare a public variable of type GameObject
+    public GameObject waterHeight;
+	
 	InventoryManager invManager;
     // Start is called before the first frame update
     void Start()
     {
         targetPosition = transform.position;
-        var floatHeightObject = GameObject.Find("Water 1 Height");
+        var floatHeightObject = GameObject.Find(waterHeight.name);
+		
+		
+		// If Object is still null, try finding the GameObject with the default name
+		if (floatHeightObject == null)
+		{
+			floatHeightObject = GameObject.Find("Water 1 Height");
+		}
+
+		// Check if the GameObject is found and handle accordingly
+		if (floatHeightObject != null)
+		{
+			// GameObject found, do something with it
+			Debug.Log("Found GameObject: " + floatHeightObject.name);
+		}
+		else
+		{
+			// GameObject not found, handle the case
+			Debug.LogWarning("GameObject not found using waterHeight's name or the default name.");
+		}
+		
         positionAfterFloat = floatHeightObject.transform.position;
         ceilingObject = GameObject.Find("Ceiling");
 		
