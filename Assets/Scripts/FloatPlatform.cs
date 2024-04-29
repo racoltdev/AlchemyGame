@@ -133,21 +133,27 @@ public class FloatPlatform : MonoBehaviour
     }
 	
 	public void SpendElement(int correctItemID)
-	{
-		bool itemMatched = false;
-		for (int i = 0; i < invManager.itemSlot.Length; i++) {
-		  if (invManager.itemSlot[i].itemID == correctItemID) {
-			itemMatched = true;
-			break;
-		  } else
-		  {
-			  Debug.Log("You don't have the right element!");
-		}
-		if (itemMatched) {
-		  WaterPlaced;
-		}
-		
-	}
+{
+    bool itemMatched = false;
+    for (int i = 0; i < invManager.itemSlot.Length; i++)
+    {
+        if (invManager.itemSlot[i].itemID == correctItemID)
+        {
+            itemMatched = true;
+            break;
+        }
+    }
+
+    if (itemMatched)
+    {
+        WaterPlaced();
+    }
+    else
+    {
+        Debug.Log("You don't have the right element!");
+    }
+}
+
 	
 	
 }
