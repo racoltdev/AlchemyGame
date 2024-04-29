@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems; // Add this line to include the EventSystem namespace
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private float stuckTimer = 0f;
     private float maxStuckTime = 1.5f; // Adjust as needed
 	private float resetDistance = 0.5f; // Adjust as needed
-
+    private bool canMove = true; // Flag to control movement
 
 
     private void Start()
@@ -35,9 +36,10 @@ public class PlayerMovement : MonoBehaviour
             targetPosition = transform.position + direction * resetDistance;
         }
 		
-        if (Input.GetMouseButton(0)||Input.GetMouseButton(1)) // Left or Right Click
+        // Handle movement only when not clicking UI
+        if (canMove && (Input.GetMouseButton(0) || Input.GetMouseButton(1)))
         {
-            // Set target position to mouse position only when right-click event occurs
+            // Set target position to mouse position only when left or right-click event occurs and not clicking UI
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPosition.z = 0f; // Ensure z-coordinate is 0 for 2D movement
         }
@@ -47,6 +49,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveTowards(Vector3 targetPosition)
     {
+        if (!canMove)
+        {
+            // Prevent movement when clicking UI
+            return;
+        }
+		
         Vector3 direction = (targetPosition - transform.position);
         direction.y = 0f;
         direction.Normalize();
@@ -83,6 +91,18 @@ private bool IsStuck()
         // Reset the stuck timer if not colliding with any wall
         stuckTimer = 0f;
         return false;
+    }
+	
+	    // Method to handle pointer enter event
+    public void OnPointerEnter()
+    {
+        canMove = false; // Disable movement when pointer enters the hitbox
+    }
+
+    // Method to handle pointer exit event
+    public void OnPointerExit()
+    {
+        canMove = true; // Enable movement when pointer exits the hitbox
     }
 
 }
