@@ -17,7 +17,8 @@ public class FloatPlatform : MonoBehaviour
 
     public GameObject goalObject;
     private bool isGoalFloating = false;
-
+	
+	InventoryManager invManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,11 @@ public class FloatPlatform : MonoBehaviour
         var floatHeightObject = GameObject.Find("Water 1 Height");
         positionAfterFloat = floatHeightObject.transform.position;
         ceilingObject = GameObject.Find("Ceiling");
+		
+		//Needed access to Inventory
+
+		invManager = 
+		GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
 
     // Update is called once per frame
@@ -50,10 +56,12 @@ public class FloatPlatform : MonoBehaviour
         }
     }
 
-    /*void WaterPlaced()
+
+	//Don't comment this out, this is the most important one!
+    public void WaterPlaced()
     {
         targetPosition = positionAfterFloat;
-    }*/
+    }
 
     public void MoveTowards(Vector3 targetPosition)
     {
@@ -123,4 +131,23 @@ public class FloatPlatform : MonoBehaviour
             }
         }
     }
+	
+	public void SpendElement(int correctItemID)
+	{
+		bool itemMatched = false;
+		for (int i = 0; i < invManager.itemSlot.Length; i++) {
+		  if (invManager.itemSlot[i].itemID == correctItemID) {
+			itemMatched = true;
+			break;
+		  } else
+		  {
+			  Debug.Log("You don't have the right element!");
+		}
+		if (itemMatched) {
+		  WaterPlaced;
+		}
+		
+	}
+	
+	
 }
