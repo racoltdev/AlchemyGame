@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &5062603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3762154545258115235, guid: c8333c716bf2d5843aed6f0a8df61b8f, type: 3}
+  m_PrefabInstance: {fileID: 3762154545614618219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &9852684 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8092267092498018711, guid: 70ff169f3a76099449d17671e286b8ed, type: 3}
@@ -2338,6 +2343,10 @@ PrefabInstance:
       propertyPath: goalObject
       value: 
       objectReference: {fileID: 1996143112}
+    - target: {fileID: 3762154544649285950, guid: c8333c716bf2d5843aed6f0a8df61b8f, type: 3}
+      propertyPath: waterHeight
+      value: 
+      objectReference: {fileID: 5062603}
     - target: {fileID: 8899977050425922566, guid: c8333c716bf2d5843aed6f0a8df61b8f, type: 3}
       propertyPath: m_Name
       value: Water Button
